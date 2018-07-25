@@ -3,3 +3,4 @@ imutils
 opencv-python
 numpy
 scipy
+deeplens-core-modules
