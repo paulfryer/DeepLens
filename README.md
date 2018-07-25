@@ -1,4 +1,4 @@
-# DeepLens
+# DeepLens Lambda Functions
 A repository of Lambda functions and ML models, specifically designed to run on DeepLens via Greengrass.
 
 | Function        | Description           | Use with Model  |
