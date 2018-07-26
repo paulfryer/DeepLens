@@ -10,6 +10,6 @@ A repository of Lambda functions and ML models, specifically designed to run on 
 ### Installation Instructions
 
 1. Clone this repository.
-2. On Linux run 'bash build.sh' - this will install the required python modules.
+2. On Linux run 'bash build.sh' for the function of interest, this will install the required python modules.
 3. Deploy function to AWS Lambda using SAM.
 4. Add function to DeepLens project and deploy to device.
