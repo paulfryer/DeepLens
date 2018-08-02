@@ -1,1 +1,2 @@
 deeplens-core-modules
+opencv-contrib-python
