@@ -45,6 +45,47 @@ class FIFO_Thread(Thread):
                 continue  
 
 
+def extract_features(vector_size=32):
+    try:
+        # Using KAZE, cause SIFT, ORB and other was moved to additional module
+        # which is adding addtional pain during install
+        alg = cv2.KAZE_create()
+        # Dinding image keypoints
+        kps = alg.detect(jpeg)
+        # Getting first 32 of them. 
+        # Number of keypoints is varies depend on image size and color pallet
+        # Sorting them based on keypoint response value(bigger is better)
+        kps = sorted(kps, key=lambda x: -x.response)[:vector_size]
+        # computing descriptors vector
+        kps, dsc = alg.compute(jpeg, kps)
+        # Flatten all of them in one big vector - our feature vector
+        dsc = dsc.flatten()
+        # Making descriptor of same size
+        # Descriptor vector size is 64
+        needed_size = (vector_size * 64)
+        if dsc.size < needed_size:
+            # if we have less the 32 descriptors then just adding zeros at the
+            # end of our feature vector
+            dsc = np.concatenate([dsc, np.zeros(needed_size - dsc.size)])
+    except cv2.error as e:
+        print('Error: ', e)
+        return None
+    return dsc
+
+def index_features(account, camera, frame, boundingBox, features):
+    
+    
+    csv = "{},{},{},{}".format(account, camera, frame, boundingBox)
+    
+    firehose = boto3.client("firehose", "us-east-1")
+    response = firehose.put_record(
+    DeliveryStreamName='face-features',
+    Record={
+            'Data': "{}\n".format(csv)
+        }
+    )
+    
+
 def index_faces(collection_id, external_image_id, region="us-east-1"):
 	rekognition = boto3.client("rekognition", region)
 
@@ -157,8 +198,10 @@ def greengrass_infinite_infer_run():
                     ##push_to_s3(crop_img, i)
                 
                 # make sure we start streaming before we index so timestamps exist in video stream.
-                index_faces("act-1234", datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")); 
-                
+                frameKey = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+                #index_faces("act-1234", frameKey); 
+                features = extract_features()
+                index_features("cam123", "8-4-6-2", features, frameKey, "act456")
                 
                 stopStreamingTime = datetime.datetime.now() + datetime.timedelta(seconds = 10)
                 
