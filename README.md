@@ -14,8 +14,8 @@ A repository of Lambda functions and ML models, specifically designed to run on 
 3. Deploy function to AWS Lambda using SAM.
 4. Add function to DeepLens project and deploy to device.
 
-# Cloud Side Functions for Searching Faces
+# Cloud based functions for searching faces
 
 | Function        | Description           | 
 | ------------- |:-------------:|
-| [Get Streaming Url](/GetStreamingUrl/)     | Use to get a stream URL for a given time window. |
+| [Get Streaming Url](/GetStreamingUrl/)     | Use to get a stream URL for a given time window. You can view the stream in a [web client here](https://video-dev.github.io/hls.js/demo/). |
