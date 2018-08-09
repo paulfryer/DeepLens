@@ -6,6 +6,7 @@ var s3 = new AWS.S3();
 
 exports.handler = async (event, context) => {
   
+
       var nowEpoc = new Date(); // Math.floor(new Date() / 1000);
     
     var MS_PER_MINUTE = 60000;
@@ -21,6 +22,8 @@ exports.handler = async (event, context) => {
     var dataResult = await kinesisvideo.getDataEndpoint(params).promise();
     
     console.log(dataResult.DataEndpoint);
+
+    console.log(AWS);
 
     var kinesisvideoarchivedmedia = new AWS.KinesisVideoArchivedMedia({
       endpoint: dataResult.DataEndpoint
