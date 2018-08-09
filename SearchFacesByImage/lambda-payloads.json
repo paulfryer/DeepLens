@@ -1,0 +1,9 @@
+{
+    "SearchFacesByImage": {
+        "lambda": {
+            "CollectionId": "act-123",
+            "ReferenceImageBucket": "imagesearchbucket",
+            "ReferenceImageKey": "reference-face.png"
+        }
+    }
+}
