@@ -15,6 +15,7 @@ A repository of Lambda functions and ML models, specifically designed to run on 
 4. Add function to DeepLens project and deploy to device.
 
 # Cloud Side Functions for Searching Faces
-| ------------- |:-------------:|
+
 | Function        | Description           | 
+| ------------- |:-------------:|
 | [Get Streaming Url](/GetStreamingUrl/)     | Use to get a stream URL for a given time window. |
