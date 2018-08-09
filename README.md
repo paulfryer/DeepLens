@@ -19,3 +19,4 @@ A repository of Lambda functions and ML models, specifically designed to run on 
 | Function        | Description           | 
 | ------------- |:-------------:|
 | [Get Streaming Url](/GetStreamingUrl/)     | Use to get a stream URL for a given time window. You can view the stream in a [web client here](https://video-dev.github.io/hls.js/demo/). |
+| [Search Faces by Image](/SearchFacesByImage/)    | Find all matching faces for a given reference face.    |
