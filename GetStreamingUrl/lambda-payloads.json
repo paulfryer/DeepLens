@@ -1,5 +1,7 @@
 {
     "GetStreamingUrl": {
-        "lambda": {}
+        "lambda": {
+            "StreamName": "deeplens-stream"
+        }
     }
 }
