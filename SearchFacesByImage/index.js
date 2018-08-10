@@ -5,11 +5,11 @@ var s3 = new AWS.S3();
 exports.handler = async (event, context) => {
 var obj = await s3.getObject({Bucket: event.ReferenceImageBucket, Key: event.ReferenceImageKey}).promise();
 var params = {
-      CollectionId: 'act-1234',
+      CollectionId: event.CollectionId,
       Image: { 
         Bytes: obj.Body
       },
-      FaceMatchThreshold: 95,
+      FaceMatchThreshold: event.FaceMatchThreshold,
       MaxFaces: 100
     };
    var matches = await rekognition.searchFacesByImage(params).promise();
