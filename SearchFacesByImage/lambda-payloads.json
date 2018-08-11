@@ -1,7 +1,8 @@
 {
     "SearchFacesByImage": {
         "lambda": {
-            "CollectionId": "cam123",
+            "FaceMatchThreshold": 70,
+            "CollectionId": "act-1234",
             "ReferenceImageBucket": "imagesearchbucket",
             "ReferenceImageKey": "reference-face.jpg"
         }

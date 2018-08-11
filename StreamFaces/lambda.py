@@ -199,7 +199,7 @@ def greengrass_infinite_infer_run():
                 
                 # make sure we start streaming before we index so timestamps exist in video stream.
                 frameKey = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-                index_faces("act-1234", frameKey); 
+                index_faces("act-1234", frameKey)
                 #features = extract_features()
                 #index_features("cam123", "8-4-6-2", features, frameKey, "act456")
                 
