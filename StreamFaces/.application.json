@@ -1,0 +1,10 @@
+{
+    "Functions": {
+        "StreamFaces": {
+            "PhysicalId": {
+                "us-east-1": "cloud9-StreamFaces-StreamFaces-78KEQF5VZ0SJ"
+            }
+        }
+    },
+    "StackName": "cloud9-StreamFaces"
+}

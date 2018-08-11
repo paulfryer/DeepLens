@@ -13,6 +13,7 @@ var params = {
       MaxFaces: 100
     };
    var matches = await rekognition.searchFacesByImage(params).promise();
+   console.log(matches);
     matches.FaceMatches.forEach(match => {
        console.log(match.Similarity, match.Face); 
     });

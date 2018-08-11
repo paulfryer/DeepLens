@@ -1,9 +1,9 @@
 {
     "SearchFacesByImage": {
         "lambda": {
-            "CollectionId": "act-123",
+            "CollectionId": "cam123",
             "ReferenceImageBucket": "imagesearchbucket",
-            "ReferenceImageKey": "reference-face.png"
+            "ReferenceImageKey": "reference-face.jpg"
         }
     }
 }
