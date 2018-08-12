@@ -121,6 +121,14 @@ def push_to_s3(img, index):
         msg = "Pushing to S3 failed: " + str(e)
         client.publish(topic=iotTopic, payload=msg)
 
+def iso_format(dt):
+    try:
+        utc = dt + dt.utcoffset()
+    except TypeError as e:
+        utc = dt
+    isostring = datetime.strftime(utc, '%Y-%m-%dT%H:%M:%S.{0}Z')
+    return isostring.format(int(round(utc.microsecond/1000.0)))
+
 def greengrass_infinite_infer_run():
     try:
         modelPath = "/opt/awscam/artifacts/mxnet_deploy_ssd_FP16_FUSED.xml"
@@ -198,7 +206,8 @@ def greengrass_infinite_infer_run():
                     ##push_to_s3(crop_img, i)
                 
                 # make sure we start streaming before we index so timestamps exist in video stream.
-                frameKey = datetime.datetime.utcnow().strftime("%Y-%m-%d_%H:%M:%S")
+                
+                frameKey = iso_format(datetime.now())
                 index_faces("act-1234", frameKey)
                 #features = extract_features()
                 #index_features("cam123", "8-4-6-2", features, frameKey, "act456")
