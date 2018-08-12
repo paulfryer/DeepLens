@@ -126,7 +126,7 @@ def iso_format(dt):
         utc = dt + dt.utcoffset()
     except TypeError as e:
         utc = dt
-    isostring = datetime.strftime(utc, '%Y-%m-%dT%H:%M:%S.{0}Z')
+    isostring = datetime.datetime.strftime(utc, '%Y-%m-%dT%H:%M:%S.{0}Z')
     return isostring.format(int(round(utc.microsecond/1000.0)))
 
 def greengrass_infinite_infer_run():
@@ -207,7 +207,7 @@ def greengrass_infinite_infer_run():
                 
                 # make sure we start streaming before we index so timestamps exist in video stream.
                 
-                frameKey = iso_format(datetime.now())
+                frameKey = iso_format(datetime.datetime.utcnow())
                 index_faces("act-1234", frameKey)
                 #features = extract_features()
                 #index_features("cam123", "8-4-6-2", features, frameKey, "act456")
