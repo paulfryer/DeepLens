@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: deeplens-core-modules
+Version: 0.0.1
+Summary: The core python modules needed to run Lambda functions on DeepLens devices.
+Home-page: https://github.com/paulfryer/DeepLens
+Author: Paul Fryer
+License: UNKNOWN
+Description: # DeepLens Core Modules
+        
+        This package contains the core python modules required to run on DeepLens. THis can be helpful for developing SAM based Lambda deployments where you need to package all your dependencies.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

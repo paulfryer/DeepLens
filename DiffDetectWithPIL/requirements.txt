@@ -1,0 +1,2 @@
+pillow
+deeplens-core-modules
