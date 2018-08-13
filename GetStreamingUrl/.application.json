@@ -1,1 +1,10 @@
-{}
+{
+    "Functions": {
+        "GetStreamingUrl": {
+            "PhysicalId": {
+                "us-east-1": "cloud9-GetStreamingUrl-GetStreamingUrl-OR0C1W9FCP0B"
+            }
+        }
+    },
+    "StackName": "cloud9-GetStreamingUrl"
+}

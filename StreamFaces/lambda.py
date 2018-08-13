@@ -24,6 +24,8 @@ client = greengrasssdk.client('iot-data')
 # This is the topic that this code uses to send messages to cloud
 iotTopic = '$aws/things/{}/infer'.format(os.environ['AWS_IOT_THING_NAME'])
 
+thingName = os.environ['AWS_IOT_THING_NAME'];
+
 ret, frame = awscam.getLastFrame()
 ret,jpeg = cv2.imencode('.jpg', frame) 
 Write_To_FIFO = True
@@ -157,7 +159,7 @@ def greengrass_infinite_infer_run():
         session = Session()  
         creds = session.get_credentials()  
         # Stream name and retention  
-        stream_name = 'deeplens-stream'  
+        stream_name = thingName
         retention = 2 #hours  
         region = "us-east-1"  
         # Create producer and stream.  
@@ -208,7 +210,7 @@ def greengrass_infinite_infer_run():
                 # make sure we start streaming before we index so timestamps exist in video stream.
                 
                 frameKey = iso_format(datetime.datetime.utcnow())
-                index_faces("act-1234", frameKey)
+                index_faces(thingName, frameKey)
                 #features = extract_features()
                 #index_features("cam123", "8-4-6-2", features, frameKey, "act456")
                 
