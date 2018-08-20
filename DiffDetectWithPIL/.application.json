@@ -1,0 +1,10 @@
+{
+    "Functions": {
+        "DiffDetectWithPIL": {
+            "PhysicalId": {
+                "us-east-1": "cloud9-DiffDetectWithPIL-DiffDetectWithPIL-1UZUB4T7W5R08"
+            }
+        }
+    },
+    "StackName": "cloud9-DiffDetectWithPIL"
+}
