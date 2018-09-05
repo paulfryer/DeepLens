@@ -101,13 +101,11 @@ def index_faces(collection_id, external_image_id, region="us-east-1"):
 
 def push_to_s3(img, index):
     try:
-        bucket_name = "sky-cameras"
+        bucket_name = "deeplearning-test-bucket"
 
         timestamp = int(time.time())
         now = datetime.datetime.now()
-        key = "faces/{}_{}/{}_{}/{}_{}.jpg".format(now.month, now.day,
-                                                   now.hour, now.minute,
-                                                   timestamp, index)
+        key = "faces/{}-{}.jpg".format(timestamp, index)
 
         s3 = boto3.client('s3')
 
@@ -188,10 +186,11 @@ def greengrass_infinite_infer_run():
             # Run model inference on the resized frame
             inferOutput = model.doInference(frameResize)
 
-
             # Output inference result to the fifo file so it can be viewed with mplayer
             parsed_results = model.parseResult(modelType, inferOutput)['ssd']
             label = '{'
+
+
 
             for i, obj in enumerate(parsed_results):
                 if obj['prob'] < prob_thresh:
@@ -201,12 +200,14 @@ def greengrass_infinite_infer_run():
                 ymin = int( yscale * obj['ymin'] )
                 xmax = int( xscale * obj['xmax'] ) + int((obj['xmax'] - input_width/2) + input_width/2)
                 ymax = int( yscale * obj['ymax'] )
-                
+        
                 if stopStreamingTime <= datetime.datetime.now():
                     my_stream.start()
-                    ##crop_img = frame[ymin:ymax, xmin:xmax]
-                    ##push_to_s3(crop_img, i)
-                
+
+                client.publish(topic=iotTopic, payload="About to save face to S3")
+                crop_img = frame[ymin:ymax, xmin:xmax]
+                push_to_s3(crop_img, i)
+
                 # make sure we start streaming before we index so timestamps exist in video stream.
                 
                 frameKey = iso_format(datetime.datetime.utcnow())
