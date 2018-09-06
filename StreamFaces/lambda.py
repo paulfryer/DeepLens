@@ -48,7 +48,7 @@ def index_faces(collection_id, external_image_id, region="us-east-1"):
 
 def push_to_s3(img, index):
     try:
-        bucket_name = thingName
+        bucket_name = thingName.replace('_', '-').lower()
         timestamp = int(time.time())
         now = datetime.datetime.now()
         key = "faces/{}-{}.jpg".format(timestamp, index)
